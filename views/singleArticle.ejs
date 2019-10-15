@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Document</title>
+</head>
+<body>
+    <h1>Article</h1>
+      <a href="/articles">Home</a>
+     <a href="/articles/create">create new article</a>
+        <h2><%=article.title %></h2>
+        <h2><%=article.description %></h2>
+        <h2><%=article.likes %></h2> 
+        <p><%=article.author.username %></p> 
+        <p><%=article.author.email %></p> 
+        <a href="/articles/<%= article.id %>/edit">edit</a>  
+        <a href="/articles/<%= article.id %>/delete">delete</a>    
+        <h2>comments</h2>
+        <!-- <%= comments %> -->
+        <% comments.forEach(comment=>{ %>
+              <h2><%= comment.text %> </h2>
+              <p><%= comment.author.username %></p>
+            
+              <a href="/comments/<%=comment.id%>/edit">edit</a>
+              <a href="/comments/<%= comment.id %>/delete">delete</a>
+        <% }) %>
+        <form action="/comments" method="POST">
+            <input type="text" name="text">
+            <input type="hidden" name="articleId" value="<%=article.id %>">
+           
+            
+       
+        
+        <input type="submit" class="button" value="update comment">
+        </form>
+
+    <a href="/users/logout">logout</a>
+</body>
+</html>
